@@ -1,0 +1,2 @@
+DOCKER_ZIPKIN_DIR=/tmp/docker-zipkin
+TODO_APP_DIR=/tmp/todo-app
