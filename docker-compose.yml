@@ -1,0 +1,11 @@
+version: '2'
+
+
+services:
+  app_cassandra:
+    build: ./app_cassandra
+    container_name: app_cassandra
+    ports:
+      - 9043:9042
+    environment:
+      - ADDITIONAL_JVM_OPTS=-DZipkinTracing.kafkaCollectorAddress=192.168.10.3:9092 -DZipkinTracing.collectorMethod=kafka
