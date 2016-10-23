@@ -4,12 +4,15 @@ MAINTAINER OpenZipkin "http://zipkin.io/"
 
 ENV ZIPKIN_VERSION 1.13.1
 
+RUN apk add --update python
+
 # Temporarily hard-code zipkin's configuration to a class that looks up the container's IP
 ADD ZipkinConfigurationLoader.class /cassandra/build/classes/main/ZipkinConfigurationLoader.class
 ENV CASSANDRA_VERSION=3.9 \
     JAVA=/usr/local/java/jre/bin/java
 
 ADD *.jar /cassandra_libs/
+COPY apache-cassandra-3.10-SNAPSHOT-bin.tar.gz /cassandra-distro/apache-cassandra-3.10-SNAPSHOT-bin.tar.gz
 ADD install.sh /usr/local/bin/install
 RUN /usr/local/bin/install
 
