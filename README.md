@@ -18,6 +18,7 @@ And in another this:
 
 	./run_app_cassandra.sh
 
-After that has started properly (`cqlsh 127.0.0.1 9043` connects to cassandra), you need to run this to enable tracing in Cassandra:
+Then to run the app:
 
-	docker exec app_cassandra /cassandra/bin/nodetool settraceprobability 1.0
+    ./run_app.sh
+
