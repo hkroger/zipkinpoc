@@ -4,6 +4,26 @@ Motivation of this small project was to test Zipkin by setting up a test environ
 
 ![Overall picture of the application](openzipkinpoc.png?raw=true "Diagram")
 
+## The components
+
+### Application
+
+- Google chrome + Zipkin plugin
+- [Todo App](https://github.com/hkroger/todo) (forked from [https://github.com/bmuschko/todo](https://github.com/bmuschko/todo))
+	- Added Cassandra storage
+	- Added Zipkin instrumentation
+- Cassandra
+	- Patched version of 3.X snapshot because [CASSANDRA-11706](https://issues.apache.org/jira/browse/CASSANDRA-11706) and [CASSANDRA-12835](https://issues.apache.org/jira/browse/CASSANDRA-12835)
+	- With [Cassandra Zipkin Tracing](https://github.com/hkroger/cassandra-zipkin-tracing) (forked from [https://github.com/thelastpickle/cassandra-zipkin-tracing/network](https://github.com/thelastpickle/cassandra-zipkin-tracing/network))
+	- Docker image
+
+### Zipkin
+
+Official [Zipkin docker](https://github.com/openzipkin/docker-zipkin.git) setup configured with:
+
+- Kafka as transport
+- Cassandra as storage
+
 # Installation
 
 Currently the scripts assume that you are running under Mac OS X and that you have certain prerequisites installed (making it run under Linux would not be a big problem).
@@ -23,11 +43,11 @@ Optional: Install [Google Chrome zipkin plugin](https://chrome.google.com/websto
 	
 # To run everything
 
-Run this in a separate window: 
+Run this. It will start Zipkin + Kafka + Cassandra: 
 
 	./run_zipkin.sh
 
-And in another this. This will create another instance of Cassandra accessible in the port 9043 (normally Cassandra uses 9042):
+In another console run this. This will create another instance of Cassandra accessible in the port 9043 (normally Cassandra uses 9042):
 
 	./run_app_cassandra.sh
 
